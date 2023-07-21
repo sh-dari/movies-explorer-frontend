@@ -1,0 +1,12 @@
+.section-header__title {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0 0 23px;
+}
+
+.section-header__line {
+  border-top: 1px solid #000;
+}

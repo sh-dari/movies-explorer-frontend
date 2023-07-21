@@ -1,0 +1,8 @@
+@import url(./vendor/normalize.css);
+
+@import url(./vendor/fonts/fonts.css);
+
+.body{
+  height: 100%;
+  background-color: #fff;
+}

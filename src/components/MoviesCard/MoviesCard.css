@@ -1,0 +1,118 @@
+.movies-list__item {
+  list-style: none;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 17px;
+  align-items: center;
+  width: 100%;
+}
+
+.movies-list__wrapper {
+  position: relative;
+}
+
+.movies-list__image {
+  width: 360px;
+  max-height: 201px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 6px;
+}
+
+.movies-list__save {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.9;
+  border-radius: 30px;
+  background-color: #f9f9f9;
+  border: none;
+  padding: 6px 7px;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.movies-list__saved {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-image: url(../../images/save.svg);
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.movies-list__delete {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-image: url(../../images/delete.svg);
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  object-position: center;
+  opacity: 1;
+  border: none;
+  background-color: inherit;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.movies-list__wrapper:hover {
+  cursor: pointer;
+}
+
+.movies-list__wrapper:hover .movies-list__save {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.movies-list__wrapper:hover .movies-list__delete {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.movies-list__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 328px;
+  column-gap: 34px;
+  width: 100%;
+}
+
+.movies-list__title {
+  margin: 0;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  max-width: 250px;
+}
+
+.movies-list__time {
+  margin: 0;
+  color: #a0a0a0;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.91;
+}
+
+@media screen and (max-width: 1170px) {
+  .movies-list__item {
+    max-width: 339px;
+  }
+
+  .movies-list__image {
+    width: 339px;
+    max-height: 190px;
+  }
+}
