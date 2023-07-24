@@ -33,7 +33,7 @@
 .search-form__wrapper::before {
   content: "";
   position: absolute;
-  left: 0;
+  left: 6px;
   top: 0;
   background-image: url(../../images/search.svg);
   width: 34px;
@@ -66,13 +66,14 @@
 @media screen and (max-width: 1170px) {
   .search-form {
     max-width: 708px;
-    padding-top: 153px;
+    padding-top: 98px;
   }
 }
 
 @media screen and (max-width: 500px) {
   .search-form {
     max-width: 292px;
+    padding-top: 111px;
   }
 
   .search-form__wrapper::before {

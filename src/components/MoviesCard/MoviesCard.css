@@ -3,7 +3,7 @@
   max-width: 360px;
   display: flex;
   flex-direction: column;
-  row-gap: 17px;
+  row-gap: 11px;
   align-items: center;
   width: 100%;
 }
@@ -108,11 +108,15 @@
   font-style: normal;
   font-weight: 400;
   line-height: 0.91;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  padding: 3px 4px;
 }
 
 @media screen and (max-width: 1170px) {
   .movies-list__item {
     max-width: 339px;
+    row-gap: 22px;
   }
 
   .movies-list__item:nth-child(n + 9) {
@@ -123,12 +127,16 @@
     width: 339px;
     max-height: 190px;
   }
+
+  .movies-list__description {
+    max-width: 339px;
+  }
 }
 
 @media screen and (max-width: 725px) {
   .movies-list__item {
     max-width: 300px;
-    row-gap: 16px;
+    row-gap: 12px;
   }
 
   .movies-list__item:nth-child(n + 6) {

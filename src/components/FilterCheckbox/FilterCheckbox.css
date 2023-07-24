@@ -67,9 +67,10 @@
   transform: translateX(16px);
 }
 
-@media screen and (max-width: 1170px) {
+@media screen and (max-width: 500px) {
   .checkbox {
     max-width: 148px;
+    padding-top: 42px;
   }
 
   .checkbox__text {

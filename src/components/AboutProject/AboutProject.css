@@ -1,7 +1,7 @@
 .about {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 110px 0;
+  padding: 110px 0 100px;
 }
 
 .about__plan {
@@ -49,22 +49,43 @@
 
 .about__date-item {
   margin: 0;
-  padding: 10px 0;
+  padding: 12px 0 10px;
   color: #a0a0a0;
 }
 
 .about__date-item_color_black {
   background-color: #000;
   color: #fff;
+  padding: 10px 0;
 }
 .about__date-item_color_gray {
   background-color: #f2f2f2;
   color: #000;
+  padding: 10px 0;
 }
 
 @media screen and (max-width: 1170px) {
   .about {
     max-width: 668px;
+    padding: 90px 0 82px;
+  }
+
+  .about__plan {
+    column-gap: 36px;
+  }
+
+  .about__plan-item {
+    row-gap: 22px;
+  }
+
+  .about__plan-description {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .about__date {
+    margin-top: 92px;
+    grid-template-columns: 3fr 11fr;
   }
 }
 
@@ -76,7 +97,8 @@
 
   .about__plan {
     flex-direction: column;
-    row-gap: 56px;
+    row-gap: 58px;
+    margin-top: 61px;
   }
 
   .about__plan-item {
@@ -94,7 +116,8 @@
   }
 
   .about__date {
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 4fr 7fr;
     font-size: 11px;
+    margin-top: 62px;
   }
 }

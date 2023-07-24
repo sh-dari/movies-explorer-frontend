@@ -12,7 +12,7 @@
 }
 
 .portfolio__item {
-  padding-bottom: 9px;
+  padding-bottom: 14px;
   border-bottom: 1px solid #e8e8e8;
 }
 
@@ -36,6 +36,14 @@
   background-position: center;
   background-size: auto;
   background-image: url(../../images/arrow.svg);
+}
+
+@media screen and (max-width: 1170px) {
+  .portfolio__text {
+    font-size: 28px;
+    line-height: 1.79;
+    letter-spacing: -1.12px;
+  }
 }
 
 @media screen and (max-width: 500px) {

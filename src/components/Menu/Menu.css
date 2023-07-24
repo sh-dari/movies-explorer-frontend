@@ -32,7 +32,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 67%;
+  width: 68%;
   height: 100vh;
   background-color: #fff;
   display: flex;
@@ -47,8 +47,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 28px;
-  margin-top: 54px;
+  row-gap: 25px;
+  margin-top: 64px;
 }
 
 .menu__link {
@@ -86,8 +86,8 @@
 
 .menu__close {
   position: absolute;
-  top: 20px;
-  right: 40px;
+  top: 22px;
+  right: 22px;
   background-image: url(../../images/close.svg);
   background-size: contain;
   background-repeat: no-repeat;
@@ -111,7 +111,16 @@
   }
 
   .menu__close {
-    top: 20px;
-    right: 20px;
+    top: 13px;
+    right: 13px;
+  }
+
+  .menu__wrapper {
+    margin-top: 102px;
+    row-gap: 20px;
+  }
+
+  .menu__navigation {
+    row-gap: 350px;
   }
 }

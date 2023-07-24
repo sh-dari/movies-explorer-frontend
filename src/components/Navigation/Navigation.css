@@ -1,6 +1,6 @@
 .header__movies {
   display: flex;
-  column-gap: 16px;
+  column-gap: 18px;
 }
 
 .header__link {

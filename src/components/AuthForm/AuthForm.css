@@ -1,7 +1,7 @@
 .register__container {
   display: flex;
   flex-direction: column;
-  row-gap: 134px;
+  row-gap: 128px;
   margin-top: 26px;
 }
 
@@ -125,13 +125,14 @@
   font-size: 10px;
   font-weight: 400;
   text-align: start;
-  min-height: 24px;
+  min-height: 17px;
 }
 
 @media screen and (max-width: 500px) {
   .register__container {
     width: 100%;
-    row-gap: 222px;
+    row-gap: 218px;
+    margin-top: 56px;
   }
 
   .register__button {

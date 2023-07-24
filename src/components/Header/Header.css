@@ -118,5 +118,14 @@
 
   .header__button {
     font-size: 10px;
+    max-width: 64px;
+  }
+
+  .header__button_type_black {
+    padding: 6px 12px;
+  }
+
+  .header__buttons {
+    column-gap: 15px;
   }
 }

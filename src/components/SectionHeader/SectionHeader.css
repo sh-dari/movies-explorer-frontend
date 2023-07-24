@@ -16,5 +16,6 @@
   .section-header__title {
     font-size: 18px;
     letter-spacing: -0.72px;
+    margin-bottom: 29px;
   }
 }

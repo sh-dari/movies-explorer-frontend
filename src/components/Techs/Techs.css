@@ -1,6 +1,6 @@
 .techs {
   background-color: #f5f5f5;
-  padding: 110px 0 100px;
+  padding: 102px 0 100px;
 }
 
 .techs__content {
@@ -47,18 +47,43 @@
   width: 100%;
   padding: 21px 0;
   text-align: center;
+  font-size: 14px;
+  letter-spacing: -0.56px;
 }
 
 @media screen and (max-width: 1170px) {
+  .techs {
+    padding: 91px 0 89px;
+  }
+
+  .techs__header {
+    margin-top: 80px;
+  }
+
   .techs__content {
     max-width: 668px;
+  }
+
+  .techs__info {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: -0.48px;
+    margin: 22px auto 83px;
+  }
+
+  .techs__list {
+    max-width: 668px;
+  }
+
+  .techs__item {
+    max-width: 84px;
   }
 }
 
 @media screen and (max-width: 500px) {
   .techs {
     background-color: #fff;
-    padding: 70px 0;
+    padding: 58px 0;
   }
 
   .techs__content {
@@ -84,7 +109,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 12px;
     column-gap: 10px;
     max-width: 178px;
   }

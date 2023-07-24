@@ -11,7 +11,7 @@ function Promo() {
           <p className="promo__text">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
           <a className="promo__button" href="#about">Узнать больше</a>
         </div>
-        <img className="promo__illustration" src={world} alt=""/>
+        <img className="promo__illustration" src={world} alt="Планета"/>
       </div>
     </section>
   );

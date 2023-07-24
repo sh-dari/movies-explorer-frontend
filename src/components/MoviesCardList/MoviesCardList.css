@@ -1,11 +1,11 @@
 .movies-list {
-  padding-top: 118px;
+  padding: 118px 0 21px;
   max-width: 1140px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 500px;
+  min-height: 471px;
 }
 
 .movies-list__list {
@@ -15,7 +15,7 @@
   justify-content: space-between;
   column-gap: 30px;
   flex-wrap: wrap;
-  row-gap: 60px;
+  row-gap: 59px;
 }
 
 .movies-list__button {
@@ -40,17 +40,27 @@
 @media screen and (max-width: 1170px) {
   .movies-list {
     max-width: 708px;
-    min-height: 700px;
+    min-height: 685px;
+    padding: 131px 0 20px;
   }
 
   .movies-list__list {
     row-gap: 47px;
+  }
+
+  .movies-list__button {
+    margin-top: 62px;
   }
 }
 
 @media screen and (max-width: 725px) {
   .movies-list {
     max-width: 300px;
-    padding-top: 90px;
+    padding: 90px 0 22px;
+    min-height: 630px;
+  }
+
+  .movies-list__list {
+    row-gap: 39px;
   }
 }
