@@ -67,3 +67,34 @@
     max-width: 668px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .about {
+    max-width: 284px;
+    padding: 70px 0;
+  }
+
+  .about__plan {
+    flex-direction: column;
+    row-gap: 56px;
+  }
+
+  .about__plan-item {
+    row-gap: 16px;
+  }
+
+  .about__plan-header {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about__plan-description {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .about__date {
+    grid-template-columns: 2fr 5fr;
+    font-size: 11px;
+  }
+}

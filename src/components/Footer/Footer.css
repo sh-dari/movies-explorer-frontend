@@ -35,12 +35,20 @@
 
 .footer__copyright {
   margin: 0;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .footer__link {
   text-decoration: none;
   color: #000;
   transition: opacity .3s ease-out;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .footer__link:hover {
@@ -50,5 +58,32 @@
 @media screen and (max-width: 1170px) {
   .footer {
     max-width: 708px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer {
+    max-width: 300px;
+  }
+
+  .footer__info {
+    flex-direction: column-reverse;
+    margin-top: 30px;
+    row-gap: 30px;
+  }
+
+  .footer__links {
+    flex-direction: column;
+    row-gap: 12px;
+  }
+
+  .footer__copyright {
+    margin: 0;
+    color: #a0a0a0;
+    font-size: 12px;
+  }
+
+  .footer__link {
+    font-size: 12px;
   }
 }

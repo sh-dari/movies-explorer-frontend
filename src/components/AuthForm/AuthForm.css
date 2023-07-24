@@ -61,6 +61,7 @@
   display: flex;
   justify-content: center;
   column-gap: 6px;
+  align-items: center;
 }
 
 .register__login-link {
@@ -125,4 +126,25 @@
   font-weight: 400;
   text-align: start;
   min-height: 24px;
+}
+
+@media screen and (max-width: 500px) {
+  .register__container {
+    width: 100%;
+    row-gap: 222px;
+  }
+
+  .register__button {
+    max-width: 260px;
+    padding: 15px 67px;
+    font-size: 12px;
+  }
+
+  .register__text {
+    font-size: 12px;
+  }
+
+  .register__login-link {
+    font-size: 12px;
+  }
 }

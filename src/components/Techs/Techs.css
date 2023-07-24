@@ -54,3 +54,46 @@
     max-width: 668px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .techs {
+    background-color: #fff;
+    padding: 70px 0;
+  }
+
+  .techs__content {
+    max-width: 284px;
+  }
+
+  .techs__header {
+    margin-top: 60px;
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+
+  .techs__info {
+    margin: 24px auto 50px;
+    font-size: 11px;
+    line-height: 1.45;
+    letter-spacing: -0.44px;
+    max-width: 292px;
+  }
+
+  .techs__list {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    column-gap: 10px;
+    max-width: 178px;
+  }
+
+  .techs__item {
+    max-width: 84px;
+    padding: 21px 0;
+    font-size: 12px;
+    letter-spacing: -0.48px;
+  }
+
+}

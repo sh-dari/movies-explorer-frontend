@@ -13,3 +13,11 @@
     padding-top: 232px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .login {
+    align-items: center;
+    padding-top: 56px;
+    max-width: 260px;
+  }
+}

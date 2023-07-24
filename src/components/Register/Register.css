@@ -14,3 +14,11 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .register {
+    align-items: center;
+    padding-top: 56px;
+    max-width: 260px;
+  }
+}
+

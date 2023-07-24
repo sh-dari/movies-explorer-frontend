@@ -110,3 +110,13 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .header__wrapper {
+    max-width: 292px;
+  }
+
+  .header__button {
+    font-size: 10px;
+  }
+}

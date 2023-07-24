@@ -76,3 +76,23 @@
     margin-bottom: 10px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .promo__wrapper {
+    max-width: 310px;
+  }
+
+  .promo__illustration {
+    max-width: 210px;
+  }
+
+  .promo__content {
+    padding: 88px 0 30px;
+  }
+
+  .promo__header {
+    font-size: 30px;
+    line-height: 1.27;
+    margin-bottom: 24px;
+  }
+}

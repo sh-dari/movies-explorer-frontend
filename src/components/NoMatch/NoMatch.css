@@ -47,3 +47,9 @@
     padding-top: 408px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .no-match {
+    padding-top: 329px;
+  }
+}

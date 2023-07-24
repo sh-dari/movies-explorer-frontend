@@ -55,6 +55,7 @@
   width: 80px;
   height: 34px;
   transition: opacity .3s ease-out;
+  background-repeat: no-repeat;
 }
 
 .search-form__wrapper:hover::after {
@@ -65,5 +66,26 @@
 @media screen and (max-width: 1170px) {
   .search-form {
     max-width: 708px;
+    padding-top: 153px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .search-form {
+    max-width: 292px;
+  }
+
+  .search-form__wrapper::before {
+    display: none;
+  }
+
+  .search-form__input {
+    text-align: start;
+    font-size: 18px;
+  }
+
+  .search-form__wrapper::after {
+    right: 0;
+    top: -7px;
   }
 }

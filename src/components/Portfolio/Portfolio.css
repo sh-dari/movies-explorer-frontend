@@ -27,3 +27,15 @@
     max-width: 668px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .portfolio {
+    max-width: 292px;
+    padding: 70px 0;
+  }
+
+  .portfolio__header {
+    font-size: 14px;
+    line-height: 1.43;
+  }
+}

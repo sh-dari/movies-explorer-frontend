@@ -113,3 +113,18 @@
     padding: 0;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .profile {
+    padding-top: 88px;
+  }
+
+  .form__input-container {
+    max-width: 260px;
+    margin: 80px auto 379px;
+  }
+
+  .form__button {
+    font-size: 12px;
+  }
+}

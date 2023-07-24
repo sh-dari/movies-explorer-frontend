@@ -8,6 +8,10 @@
   width: 100%;
 }
 
+.movies-list__item:nth-child(n + 13) {
+  display: none;
+}
+
 .movies-list__wrapper {
   position: relative;
 }
@@ -111,8 +115,33 @@
     max-width: 339px;
   }
 
+  .movies-list__item:nth-child(n + 9) {
+    display: none;
+  }
+
   .movies-list__image {
     width: 339px;
     max-height: 190px;
+  }
+}
+
+@media screen and (max-width: 725px) {
+  .movies-list__item {
+    max-width: 300px;
+    row-gap: 16px;
+  }
+
+  .movies-list__item:nth-child(n + 6) {
+    display: none;
+  }
+
+  .movies-list__image {
+    width: 300px;
+    max-height: 168px;
+  }
+
+  .movies-list__title {
+    font-size: 12px;
+    max-width: 240px;
   }
 }

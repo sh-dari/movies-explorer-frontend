@@ -10,3 +10,11 @@
 .section-header__line {
   border-top: 1px solid #000;
 }
+
+
+@media screen and (max-width: 500px) {
+  .section-header__title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+}
