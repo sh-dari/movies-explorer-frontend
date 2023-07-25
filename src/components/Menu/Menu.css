@@ -131,7 +131,11 @@
   }
 
   .menu__wrapper {
-    margin-top: 102px;
+    margin-top: 147px;
     row-gap: 20px;
+  }
+
+  .menu__account-logo {
+    margin-bottom: 104px;
   }
 }

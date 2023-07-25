@@ -134,4 +134,9 @@
   .header__buttons {
     column-gap: 15px;
   }
+
+  .header__burger {
+    width: 40px;
+    height: 43px;
+  }
 }
