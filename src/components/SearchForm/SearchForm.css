@@ -23,7 +23,7 @@
 }
 
 .search-form__input:focus {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ff4062;
 }
 
 .search-form__wrapper {

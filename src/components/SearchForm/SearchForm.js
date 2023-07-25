@@ -1,5 +1,6 @@
 import React from 'react';
 import './SearchForm.css';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm() {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -15,17 +16,21 @@ function SearchForm() {
   }, [searchTerm]);
 
   return(
-    <div className="search-form">
-      <div className="search-form__wrapper">
-        <input
-          className="search-form__input"
-          type="text"
-          placeholder="Фильм"
-          value={searchTerm}
-          onChange={handleChange}
-        />
-      </div>
-    </div>
+    <section>
+      <form className="search-form">
+        <div className="search-form__wrapper">
+          <input
+            className="search-form__input"
+            type="text"
+            placeholder="Фильм"
+            value={searchTerm}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <FilterCheckbox />
+      </form>
+    </section>
   );
 }
 

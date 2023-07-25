@@ -6,11 +6,11 @@ const NoMatch = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="no-match">
-      <h2 className="no-match__code">404</h2>
+    <main className="no-match">
+      <h1 className="no-match__code">404</h1>
       <p className="no-match__text">Страница не найдена</p>
       <button className="no-match__button" type="button" onClick={() => navigate(-1)}>Назад</button>
-    </section>
+    </main>
   )
 };
 

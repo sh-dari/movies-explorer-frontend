@@ -5,6 +5,7 @@
   padding-top: 92px;
   flex-direction: column;
   text-align: center;
+  width: 100%;
 }
 
 .profile__header {

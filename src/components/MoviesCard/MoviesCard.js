@@ -12,7 +12,7 @@ function MoviesCard({ card, savedList }) {
         {!savedList && card.saved && <div className="movies-list__saved"></div>}
       </div>
       <div className="movies-list__description">
-        <h3 className="movies-list__title">{card.title}</h3>
+        <h2 className="movies-list__title">{card.title}</h2>
         <p className="movies-list__time">{card.time}</p>
       </div>
     </li>

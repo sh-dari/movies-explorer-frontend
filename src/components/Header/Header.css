@@ -1,6 +1,7 @@
 .header {
   background-color: inherit;
   padding-top: 18px;
+  flex-shrink: 0;
 }
 
 .header_color_pink {
@@ -22,6 +23,11 @@
   width: 38px;
   height: 38px;
   margin: 0;
+  transition: opacity .3s ease-out;
+}
+
+.header__logo:hover {
+  opacity: .8;
 }
 
 .header__buttons {
@@ -97,7 +103,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1170px) {
+@media screen and (max-width: 768px) {
   .header__wrapper {
     max-width: 708px;
   }

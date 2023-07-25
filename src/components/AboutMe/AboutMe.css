@@ -81,7 +81,7 @@
   .student__info {
     font-size: 12px;
     line-height: 1.5;
-    margin: 18px 0 122px;
+    margin: 18px 0 86px;
   }
 
   .student__img {
@@ -121,6 +121,6 @@
   .student__info {
     font-size: 11px;
     line-height: 1.45;
-    margin-bottom: 71px;
+    margin-bottom: 39px;
   }
 }

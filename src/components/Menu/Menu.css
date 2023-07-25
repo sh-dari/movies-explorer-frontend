@@ -105,9 +105,24 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .menu__navigation {
+    justify-content: space-between;
+  }
+
+  .menu__wrapper {
+    margin-top: 160px;
+  }
+
+  .menu__account-logo {
+    margin-bottom: 183px;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .menu__navigation {
     width: 100%;
+    row-gap: 350px;
   }
 
   .menu__close {
@@ -118,9 +133,5 @@
   .menu__wrapper {
     margin-top: 102px;
     row-gap: 20px;
-  }
-
-  .menu__navigation {
-    row-gap: 350px;
   }
 }

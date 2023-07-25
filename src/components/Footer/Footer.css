@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 60px 0 20px;
   text-align: center;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 .footer__text {
@@ -55,7 +57,7 @@
   opacity: .7;
 }
 
-@media screen and (max-width: 1170px) {
+@media screen and (max-width: 768px) {
   .footer {
     max-width: 708px;
   }

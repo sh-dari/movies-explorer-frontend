@@ -2,7 +2,7 @@ import { React } from 'react';
 import './AuthForm.css';
 import { Link, useLocation } from 'react-router-dom';
 
-function AuthForm({ children, isValid }) {
+function AuthForm({ children, isValid, login }) {
   const location = useLocation();
   const text = location.pathname ==="/signup" ?
     {welcome: "Добро пожаловать!", button: "Зарегестрироваться", answer: "Уже зарегистрированы?",
@@ -19,8 +19,8 @@ function AuthForm({ children, isValid }) {
       <Link to="/">
         <div className="register__logo"></div>
       </Link>
-      <h2 className="register__welcome">{text.welcome}</h2>
-      <form onSubmit={handleSubmit} className="register__container">
+      <h1 className="register__welcome">{text.welcome}</h1>
+      <form onSubmit={handleSubmit} className={`register__container ${login ? "login__container" : ""}`}>
         <fieldset className="register__input-container">
           {children}
         </fieldset>

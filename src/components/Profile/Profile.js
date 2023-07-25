@@ -2,6 +2,7 @@ import { React, useEffect } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
 import { useFormValidation } from '../../hooks/useFormValidation';
+import { Link } from 'react-router-dom';
 
 function Profile() {
   const {values, handleChange, errors, isValid, resetForm, setValues} = useFormValidation();
@@ -21,8 +22,8 @@ function Profile() {
   return(
     <>
       <Header movies={true} />
-      <section className="profile">
-        <h2 className="profile__header">Привет, Виталий!</h2>
+      <main className="profile">
+        <h1 className="profile__header">Привет, Виталий!</h1>
         <form className="form" name="form-profile" onSubmit={handleSubmit} noValidate>
           <fieldset className="form__input-container form__input-container_for_profile">
             <div className="form__wrapper">
@@ -38,8 +39,10 @@ function Profile() {
           </fieldset>
           <button type="submit" className="form__button" value="Редактировать" disabled={!isValid}>Редактировать</button>
         </form>
-        <button type="button" className="profile__button" value="Выйти">Выйти из аккаунта</button>
-      </section>
+        <Link to="/">
+          <button type="button" className="profile__button" value="Выйти">Выйти из аккаунта</button>
+        </Link>
+      </main>
     </>
   );
 }

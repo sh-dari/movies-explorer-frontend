@@ -5,6 +5,10 @@
   margin-top: 26px;
 }
 
+.login__container {
+  row-gap: 198px;
+}
+
 .register__input-container {
   border: none;
   padding: 0;
@@ -39,6 +43,11 @@
   width: 38px;
   height: 38px;
   margin: 0;
+  transition: opacity .3s ease-out;
+}
+
+.register__logo:hover {
+  opacity: .8;
 }
 
 .register__welcome {
@@ -101,7 +110,7 @@
 }
 
 .register__item:focus {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #ff4062;
 }
 
 .register__item::placeholder {
@@ -147,5 +156,13 @@
 
   .register__login-link {
     font-size: 12px;
+  }
+
+  .register__welcome {
+    margin-top: 30px;
+  }
+
+  .login__container {
+    row-gap: 288px;
   }
 }
