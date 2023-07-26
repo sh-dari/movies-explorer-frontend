@@ -16,6 +16,10 @@
   line-height: normal;
 }
 
+.form {
+  margin-bottom: 12px;
+}
+
 .form__input-container {
   margin: 0 auto;
   border: none;
@@ -45,6 +49,11 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  border-bottom: 1px solid #fff;
+}
+
+.form__item:focus {
+  border-bottom: 1px solid #ff4062;
 }
 
 .form__label {
@@ -86,6 +95,7 @@
   font-size: 13px;
   font-weight: 500;
   transition: opacity .3s ease-out;
+  text-decoration: none;
 }
 
 .profile__button:hover {

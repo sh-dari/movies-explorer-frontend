@@ -19,13 +19,15 @@ function AuthForm({ children, isValid, login }) {
       <Link to="/">
         <div className="register__logo"></div>
       </Link>
-      <h1 className="register__welcome">{text.welcome}</h1>
-      <form onSubmit={handleSubmit} className={`register__container ${login ? "login__container" : ""}`}>
-        <fieldset className="register__input-container">
-          {children}
-        </fieldset>
-        <button type="submit" className="register__button" disabled={!isValid}>{text.button}</button>
-      </form>
+      <section className="register__section">
+        <h1 className="register__welcome">{text.welcome}</h1>
+        <form onSubmit={handleSubmit} className={`register__container ${login ? "login__container" : ""}`}>
+          <fieldset className="register__input-container">
+            {children}
+          </fieldset>
+          <button type="submit" className="register__button" disabled={!isValid}>{text.button}</button>
+        </form>
+      </section>
       <div className="register__signin">
         <p className="register__text">{text.answer}</p>
         <Link to={text.path} className="register__login-link">{text.action}</Link>

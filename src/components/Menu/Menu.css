@@ -108,6 +108,7 @@
 @media screen and (max-width: 768px) {
   .menu__navigation {
     justify-content: space-between;
+    row-gap: 350px;
   }
 
   .menu__wrapper {
@@ -115,7 +116,7 @@
   }
 
   .menu__account-logo {
-    margin-bottom: 183px;
+    margin-bottom: 86px;
   }
 }
 

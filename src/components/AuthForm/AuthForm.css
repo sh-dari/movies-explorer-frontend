@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 128px;
-  margin-top: 26px;
+  margin-top: 40px;
 }
 
 .login__container {
@@ -137,11 +137,15 @@
   min-height: 17px;
 }
 
+.register__section {
+  width: 100%;
+}
+
 @media screen and (max-width: 500px) {
   .register__container {
     width: 100%;
     row-gap: 218px;
-    margin-top: 56px;
+    margin-top: 80px;
   }
 
   .register__button {
@@ -160,6 +164,7 @@
 
   .register__welcome {
     margin-top: 30px;
+    text-align: center;
   }
 
   .login__container {
