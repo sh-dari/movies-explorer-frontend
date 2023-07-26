@@ -1,0 +1,25 @@
+.register {
+  max-width: 396px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 70px 0;
+  row-gap: 14px;
+}
+
+@media screen and (max-width: 1170px) {
+  .register {
+    padding-top: 232px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .register {
+    align-items: center;
+    padding-top: 56px;
+    max-width: 260px;
+    row-gap: 21px;
+  }
+}
+

@@ -1,0 +1,154 @@
+.profile {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  padding-top: 92px;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.profile__header {
+  margin: 0;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.form {
+  margin-bottom: 12px;
+}
+
+.form__input-container {
+  margin: 0 auto;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  max-width: 410px;
+  padding: 98px 0 196px;
+}
+
+.form__wrapper {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e8e8e8;
+  padding-top: 20px;
+  align-items: center;
+}
+
+.form__wrapper:first-child {
+  border: none;
+}
+
+.form__item {
+  text-align: end;
+  border: none;
+  outline: none;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-bottom: 1px solid #fff;
+}
+
+.form__item:focus {
+  border-bottom: 1px solid #ff4062;
+}
+
+.form__label {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.form__button {
+  border: none;
+  background-color: inherit;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: opacity .3s ease-out;
+  padding: 0;
+}
+
+.form__button:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.form__button:disabled {
+  cursor: default;
+}
+
+.profile__button {
+  max-width: 410px;
+  text-align: center;
+  margin: 0 auto;
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  margin-top: 16px;
+  color: #ff4062;
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity .3s ease-out;
+  text-decoration: none;
+}
+
+.profile__button:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.form__item-error {
+  color: #ff4062;
+  font-size: 10px;
+  font-weight: 400;
+  text-align: start;
+  min-height: 18px;
+}
+
+@media screen and (max-width: 1170px) {
+  .profile {
+    padding-top: 248px;
+  }
+
+  .form__input-container {
+    margin: 72px auto 186px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    max-width: 410px;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile {
+    padding-top: 82px;
+  }
+
+  .form__input-container {
+    max-width: 260px;
+    margin: 59px auto 360px;
+  }
+
+  .form__button {
+    font-size: 12px;
+  }
+
+  .form__item-error {
+    min-height: 15px;
+  }
+
+  .form__wrapper {
+    padding-top: 18px;
+  }
+
+  .profile__button {
+    font-size: 12px;
+  }
+}
