@@ -6,13 +6,27 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 
-function SavedMovies() {
+function SavedMovies({
+    movies,
+    handleSubmitSearch,
+    isChecked,
+    setIsChecked,
+    searchTerm,
+    setSearchTerm,
+    handleMovieDelete
+}) {
   return(
     <>
       <Header movies={true} />
       <main className="saved-movies">
-        <SearchForm />
-        <MoviesCardList savedList={true} />
+        <SearchForm
+          handleSubmitSearch={handleSubmitSearch}
+          isChecked={isChecked}
+          setIsChecked={setIsChecked}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
+        <MoviesCardList savedList={true} movies={movies} handleMovieDelete={handleMovieDelete} />
       </main>
       <Footer />
     </>

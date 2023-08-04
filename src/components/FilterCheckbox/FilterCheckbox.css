@@ -61,12 +61,9 @@
   border: 1px solid #fff;
 }
 
-.checkbox__switch-input:checked + .checkbox__switch-slider:before {
+.checkbox__switch-input:checked ~ .checkbox__switch-slider:before {
   background-color: #2be080;
   border: 1px solid #fff;
-}
-
-.checkbox__switch-input:checked + .checkbox__switch-slider:before {
   -webkit-transform: translateX(16px);
   -ms-transform: translateX(16px);
   transform: translateX(16px);

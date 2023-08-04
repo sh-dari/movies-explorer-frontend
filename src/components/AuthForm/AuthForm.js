@@ -2,17 +2,13 @@ import { React } from 'react';
 import './AuthForm.css';
 import { Link, useLocation } from 'react-router-dom';
 
-function AuthForm({ children, isValid, login }) {
+function AuthForm({ children, isValid, login, handleSubmit }) {
   const location = useLocation();
   const text = location.pathname ==="/signup" ?
     {welcome: "Добро пожаловать!", button: "Зарегестрироваться", answer: "Уже зарегистрированы?",
     path: "/signin", action: "Войти"} :
     {welcome: "Рады видеть!", button: "Войти", answer: "Ещё не зарегистрированы?",
     path: "/signup", action: "Регистрация"};
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-  }
 
   return(
     <>

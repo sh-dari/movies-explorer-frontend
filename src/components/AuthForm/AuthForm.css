@@ -36,6 +36,11 @@
   cursor: pointer;
 }
 
+.register__button:disabled {
+  opacity: .8;
+  cursor: default;
+}
+
 .register__logo {
   background-image: url(../../images/logo.svg);
   background-size: contain;
@@ -169,5 +174,9 @@
 
   .login__container {
     row-gap: 288px;
+  }
+
+  .register__item::placeholder {
+    font-size: 12px;
   }
 }
