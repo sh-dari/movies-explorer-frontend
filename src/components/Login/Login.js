@@ -1,10 +1,11 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import './Login.css';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import AuthForm from '../AuthForm/AuthForm';
 
 function Login({ handleAuthorize }) {
   const {values, handleChange, errors, isValid, resetForm} = useFormValidation();
+  const [networkErrors, setNetworkErrors] = useState("");
 
   useEffect(() => {
     resetForm();
@@ -15,16 +16,17 @@ function Login({ handleAuthorize }) {
     handleAuthorize({
       password: values.password,
       email: values.email
-    });
+    })
+    .catch(err => setNetworkErrors(err.message));
   };
 
   return(
     <main className="register login">
-      <AuthForm isValid={isValid} login={true} handleSubmit={handleSubmit}>
+      <AuthForm isValid={isValid} login={true} handleSubmit={handleSubmit} networkErrors={networkErrors}>
         <div className="register__wrapper">
           <label className="register__label" htmlFor="email">E-mail</label>
           <input className="register__item" type="email" id="email" name="email" placeholder="Почта"
-          required value={values.email || ""} onChange={handleChange} />
+          required value={values.email || ""} onChange={handleChange} pattern="[^@\s]+@[^@\s]+\.[^@\s]+" />
           <span className={`register__item-error email-input-error ${errors.email ? "register__item-error_active" : ""}`}>{errors.email}</span>
         </div>
         <div className="register__wrapper">

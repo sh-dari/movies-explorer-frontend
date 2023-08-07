@@ -13,7 +13,10 @@ function SavedMovies({
     setIsChecked,
     searchTerm,
     setSearchTerm,
-    handleMovieDelete
+    handleMovieDelete,
+    handleChange,
+    handleChangeInput,
+    isLoading
 }) {
   return(
     <>
@@ -25,8 +28,10 @@ function SavedMovies({
           setIsChecked={setIsChecked}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
+          handleChange={handleChange}
+          handleChangeInput={handleChangeInput}
         />
-        <MoviesCardList savedList={true} movies={movies} handleMovieDelete={handleMovieDelete} />
+        <MoviesCardList savedList={true} movies={movies} handleMovieDelete={handleMovieDelete} isLoading={isLoading} />
       </main>
       <Footer />
     </>

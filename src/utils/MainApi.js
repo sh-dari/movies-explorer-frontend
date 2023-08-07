@@ -6,15 +6,9 @@ class MainApi {
     this.headers = headers;
   }
 
-  getFetchAnswer(result) {
-    if (result.ok) {
-      return result.json();
-    }
-    return Promise.reject(`Ошибка: ${result.status}`)
-  }
-
-  _request(endpoint, options) {
-    return fetch(`${this.baseUrl + endpoint}`, options).then(res => this.getFetchAnswer(res))
+  async _request(endpoint, options) {
+    return fetch(`${this.baseUrl + endpoint}`, options)
+           .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
   }
 
   getSavedMovies() {

@@ -1,14 +1,15 @@
-import { React, useEffect, useContext } from 'react';
+import { React, useState, useContext, useEffect } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoginContext } from '../../contexts/LoginContext';
 
-function Profile() {
+function Profile({ handleUpdateUser }) {
   const { values, handleChange, errors, isValid, resetForm, setValues } = useFormValidation();
   const user = useContext(CurrentUserContext);
   const { handleLogout } = useContext(LoginContext);
+  const [networkErrors, setNetworkErrors] = useState("");
 
   useEffect(() => {
     resetForm();
@@ -16,11 +17,17 @@ function Profile() {
       name: user.name,
       email: user.email
     });
+    setNetworkErrors("");
   }, [resetForm, setValues, user]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-  }
+    handleUpdateUser({
+      name: values.name.trimStart(),
+      email: values.email
+    })
+    .catch(err => setNetworkErrors(err.message));
+  };
 
   return(
     <>
@@ -32,15 +39,18 @@ function Profile() {
             <fieldset className="form__input-container form__input-container_for_profile">
               <div className="form__wrapper">
                 <label className="form__label" htmlFor="name-input">Имя</label>
-                <input className="form__item form__item_el_name" value={values.name || user.name || ''} onChange={handleChange} type="text" id="name-input" name="name" placeholder="Имя" required minLength="2" maxLength="40"/>
+                <input className="form__item" type="text" id="name" name="name" placeholder="Имя (только буквы, пробел или дефис)" value={values.name || ""}
+                onChange={handleChange} required pattern="[а-яА-ЯёЁa-zA-Z\s\-]{2,40}" />
               </div>
               <span className={`form__item-error name-input-error ${errors.name ? "form__item-error_active" : ""}`}>{errors.name}</span>
               <div className="form__wrapper">
                 <label className="form__label" htmlFor="name-input">E-mail</label>
-                <input className="form__item form__item_el_email" value={values.email || user.email || ''} onChange={handleChange} type="email" id="email-input" name="email" placeholder="E-mail" required/>
+                <input className="form__item" type="email" id="email" name="email" placeholder="Почта"
+                required value={values.email || ""} onChange={handleChange} pattern="[^@\s]+@[^@\s]+\.[^@\s]+" />
               </div>
               <span className={`form__item-error emailt-input-error ${errors.email ? "form__item-error_active" : ""}`}>{errors.email}</span>
             </fieldset>
+            <span className={`form__item-errors`}>{networkErrors}</span>
             <button type="submit" className="form__button" value="Редактировать" disabled={!isValid}>Редактировать</button>
           </form>
           <button className="profile__button" onClick={handleLogout}>

@@ -6,21 +6,11 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm({
   handleSubmitSearch,
   searchTerm,
-  setSearchTerm,
   isChecked,
-  setIsChecked
+  setIsChecked,
+  handleChange,
+  handleChangeInput
 }) {
-
-  const location = useLocation();
-  
-  const handleChange = evt => {
-    setSearchTerm(evt.target.value);
-  };
-
-  const handleChangeSaved = evt => {
-    setSearchTerm(evt.target.value);
-    handleSubmitSearch(searchTerm, isChecked);
-  };
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -36,13 +26,13 @@ function SearchForm({
             className="search-form__input"
             type="text"
             placeholder="Фильм"
-            value={searchTerm}
-            onChange={location.pathname === "/saved-movies" ? handleChangeSaved : handleChange}
+            value={searchTerm || ""}
+            onChange={handleChangeInput}
             required
           />
           <button type="submit" className="search-form__button-submit" onClick={handleSubmit}/>
         </div>
-        <FilterCheckbox handleSubmit={handleSubmitSearch} isChecked={isChecked} setIsChecked={setIsChecked}/>
+        <FilterCheckbox handleSubmit={handleSubmitSearch} isChecked={isChecked} setIsChecked={setIsChecked} handleChange={handleChange} />
       </form>
     </section>
   );
