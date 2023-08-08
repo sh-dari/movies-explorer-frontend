@@ -13,13 +13,12 @@ function MoviesCardList({
   handleMovieDelete
 }) {
   const {isScreenSm, isScreenMd} = useResize();
-  const [cards, setCards] = useState([]);
   const [cardItems, setCardItems] = useState(0);
   const [noneButton, setNoneButton] = useState("");
 
   useEffect(() => {
     if (savedList) {
-      setCardItems(movies.length);
+      setCardItems(movies && movies.length);
     } else {
       if (isScreenMd) {
         setCardItems(12);
@@ -29,7 +28,7 @@ function MoviesCardList({
         setCardItems(5);
       }
     }
-  }, [cards]);
+  }, [movies]);
 
   useEffect(() => {
     if (isScreenMd) {
@@ -41,8 +40,7 @@ function MoviesCardList({
 
   useEffect(() => {
     setNoneButton("");
-    setCards(movies);
-    if (cardItems >= movies.length) {
+    if (movies && cardItems >= movies.length || !movies) {
       setNoneButton("movies-list__button_none");
     }
   }, [cardItems, movies]);
@@ -58,12 +56,12 @@ function MoviesCardList({
   return(
     <section className="movies-list">
       { isLoading ? <Preloader /> :
-        !cards.length ? <p className="movies-list__not-found">{notFoundMessage}</p> :
+        movies && !movies.length ? <p className="movies-list__not-found">{notFoundMessage}</p> :
         <ul className="movies-list__list">
-          {cards.slice(0, cardItems).map((card, index) => (
+          {movies && movies.slice(0, cardItems).map((card) => (
             <MoviesCard
               card={card}
-              key={index}
+              key={card.id ? card.id : card._id}
               savedList={savedList}
               onCardSave={handleMovieSave}
               onCardDelete={handleMovieDelete}
@@ -71,7 +69,7 @@ function MoviesCardList({
           ))}
         </ul>
       }
-      {!savedList && <button className={`movies-list__button ${noneButton}`} type="button" onClick={showMore}>Ещё</button>}
+      {!savedList && !isLoading && <button className={`movies-list__button ${noneButton}`} type="button" onClick={showMore}>Ещё</button>}
     </section>
   );
 }

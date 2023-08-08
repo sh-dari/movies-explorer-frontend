@@ -9,11 +9,19 @@ function SearchForm({
   isChecked,
   setIsChecked,
   handleChange,
-  handleChangeInput
+  handleChangeInput,
+  setErrorPopupOpened,
+  setErrorMessage
 }) {
+
+  const location = useLocation();
 
   const handleSubmit = evt => {
     evt.preventDefault();
+    if (!searchTerm && location.pathname === "/movies") {
+      setErrorPopupOpened(true);
+      setErrorMessage("Нужно ввести ключевое слово");
+    }
     handleSubmitSearch(searchTerm, isChecked);
   }
 

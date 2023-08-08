@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
@@ -14,151 +14,77 @@ import mainApi from "../../utils/MainApi";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoginContext } from '../../contexts/LoginContext';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
+import {
+  NOT_FOUND_MESSAGE,
+  ERROR_TOKEN_MESSAGE,
+  ERROR_LOGIN_MESSAGE,
+  ERROR_AUTH_MESSAGE,
+  ERROR_EMAIL_MESSAGE,
+  ERROR_PROFILE_MESSAGE,
+  SUCCESS_PROFILE_MESSAGE
+} from '../../utils/constants';
 
 function App() {
-  const [allMovies, setAllMovies] = useState(JSON.parse(localStorage.getItem("movies")) || []);
-  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem("movies")));
   const [isLoading, setIsLoading] = useState(false);
-  const [errorPopupOpened, setErrorPopupOpened] = useState(false);
+  const [popupOpened, setPopupOpened] = useState(false);
+  const [message, setMessage] = useState("");
   const [notFoundMessage, setNotFoundMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState(localStorage.getItem("request"));
   const [isChecked, setIsChecked] = useState(JSON.parse(localStorage.getItem("checkbox")));
+  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem("movies")));
 
   const [searchTermSaved, setSearchTermSaved] = useState("");
   const [isCheckedSaved, setIsCheckedSaved] = useState(false);
-  const [allMoviesSaved, setAllMoviesSaved] = useState([]);
-  const [moviesSaved, setMoviesSaved] = useState(JSON.parse(localStorage.getItem("saved-movies")));
+  const [moviesSaved, setMoviesSaved] = useState([]);
 
   const [currentUser, setСurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleTokenCheck = useCallback(async () => {
-    try {
-      const userInfoData = await mainApi.getUserInfo();
-      if (userInfoData){
-        setLoggedIn(true);
-        navigate("/movies");
-      }else {
-        setLoggedIn(false);
-      }
-    } catch(err) {
-      console.log(err);
+  const filterMovies = (moviesList, searchItem, isChecked) => {
+    if (!searchItem && location.pathname==="/movies") {
+      return moviesList
     }
-  }, []);
-
-  useEffect(() => {
-    handleTokenCheck();
-  }, [handleTokenCheck]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const [userInfoData, savedMoviesData] = await mainApi.getDataToLoadPage();
-        const moviesData = await moviesApi.getMovies();
-        setAllMovies(moviesData);
-        if (userInfoData){
-          setLoggedIn(true);
-          setСurrentUser(userInfoData);
-          setAllMoviesSaved(savedMoviesData.reverse());
-          setMoviesSaved(savedMoviesData);
-        }
-      } catch(err) {
-        console.log(err);
-      }
-    }
-    if (loggedIn) {
-      fetchData();
-    }
-  }, [loggedIn]);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const savedMoviesData = await mainApi.getSavedMovies();
-  //       setAllMoviesSaved(savedMoviesData);
-  //     } catch(err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   fetchData();
-  // }, [moviesSaved]);
-
-  useEffect(() => {
-    if (localStorage.getItem("saved-movies")) {
-      let ownerMovies = allMovies.map((movie) => {
-        if (JSON.parse(localStorage.getItem("saved-movies")).map(el => el.movieId).includes(movie.id)) {
-           movie.saved = true;
-        }else {
-          movie.saved = false;
-        }
-        return movie
-      });
-      setAllMovies(ownerMovies);
-    }
-  }, [movies, loggedIn, navigate, moviesSaved])
-
-  useEffect(() => {
-    if (searchTerm) {
-      localStorage.setItem("request", searchTerm);
-    }
-    localStorage.setItem("movies", JSON.stringify(movies));
-    localStorage.setItem("checkbox", JSON.stringify(isChecked));
-    localStorage.setItem("saved-movies", JSON.stringify(allMoviesSaved));
-  }, [movies, searchTerm, isChecked, allMoviesSaved]);
-
-  useEffect(() => {
-    handleSubmitSearch();
-  }, [isChecked, searchTerm]);
-
-  useEffect(() => {
-    handleSubmitSearchSave();
-  }, [isCheckedSaved, searchTermSaved]);
-
-  const filterMovies = (movies, searchItem, isChecked) => {
-    let updatedList = [...movies];
-    updatedList = updatedList.filter((movie) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+    return moviesList && moviesList.filter((movie) => {
       const searchRU = movie.nameRU.toLowerCase();
       const searchEN = movie.nameEN.toLowerCase();
       const isShortMovie = isChecked ? movie.duration < 40 : true;
       return (searchRU.includes(searchItem) || searchEN.includes(searchItem)) && isShortMovie
-    });
-    if (updatedList.length === 0 && localStorage.getItem("request")) {
-      setNotFoundMessage("Ничего не найдено");
-    }
-    return updatedList
+    })
   };
 
   const handleSubmitSearch = () => {
-    if (!searchTerm && !localStorage.getItem("request") && loggedIn) {
-      setErrorPopupOpened(true);
-      return
+    const filteredMovies = filterMovies(JSON.parse(localStorage.getItem("all-movies")), searchTerm, isChecked);
+    if (filteredMovies && filteredMovies.length === 0 && localStorage.getItem("request")) {
+      setNotFoundMessage(NOT_FOUND_MESSAGE);
     }
-    const filteredMovies = filterMovies(allMovies, searchTerm, isChecked);
     setMovies(filteredMovies);
   };
 
-  const handleSubmitSearchSave = () => {
-    const filteredMovies = filterMovies(allMoviesSaved, searchTermSaved, isCheckedSaved);
+  const handleSubmitSearchSaved = () => {
+    const filteredMovies = filterMovies(JSON.parse(localStorage.getItem("all-saved")), searchTermSaved, isCheckedSaved);
     setMoviesSaved(filteredMovies);
   };
 
   const closeAllPopups = () => {
-    setErrorPopupOpened(false);
-  };
-
-  const handleLogin = () => {
-    setLoggedIn(true);
+    setPopupOpened(false);
   };
 
   const handleLogout = async () => {
-    localStorage.clear();
     try {
       await mainApi.logout();
       setLoggedIn(false);
       navigate('/', {replace: true});
+      localStorage.clear();
     } catch(err) {
+      setPopupOpened(true);
+      setMessage(err);
       console.log(err);
     }
   };
@@ -167,19 +93,21 @@ function App() {
     try {
       const data = await mainApi.authorize(values.password, values.email);
       if (data.token){
-        handleLogin();
-        navigate('/movies', {replace: true});
+        setLoggedIn(true);
+        navigate('/movies');
       }else {
-        throw new Error("При авторизации произошла ошибка. Токен не передан или передан не в том формате.");
+        throw new Error(ERROR_TOKEN_MESSAGE);
       }
       const userInfo = await mainApi.getUserInfo();
       setСurrentUser(userInfo);
     } catch(err) {
       if (err.includes("401")) {
-        throw new Error("Вы ввели неправильный логин или пароль.");
+        throw new Error(ERROR_LOGIN_MESSAGE);
       }else if (err.includes("403")) {
-        throw new Error("При авторизации произошла ошибка. Переданный токен некорректен.");
+        throw new Error(ERROR_AUTH_MESSAGE);
       }
+      setPopupOpened(true);
+      setMessage(err);
       console.log(err);
     }
   };
@@ -190,10 +118,12 @@ function App() {
       handleAuthorize(values);
     } catch(err) {
       if (err.includes("409")) {
-        throw new Error("Пользователь с таким email уже существует.");
+        throw new Error(ERROR_EMAIL_MESSAGE);
       }else if (err.includes("400")) {
-        throw new Error("При обновлении профиля произошла ошибка");
+        throw new Error(ERROR_PROFILE_MESSAGE);
       }
+      setPopupOpened(true);
+      setMessage(err);
       console.log(err);
     }
   };
@@ -202,22 +132,43 @@ function App() {
     try {
       const userData = await mainApi.updateUserInfo(profile);
       setСurrentUser(userData);
+      setPopupOpened(true);
+      setMessage(SUCCESS_PROFILE_MESSAGE);
     } catch(err) {
       if (err.includes("409")) {
-        throw new Error("Пользователь с таким email уже существует.");
+        throw new Error(ERROR_EMAIL_MESSAGE);
       }else if (err.includes("400")) {
-        throw new Error("При обновлении профиля произошла ошибка");
+        throw new Error(ERROR_PROFILE_MESSAGE);
       }
+      setPopupOpened(true);
+      setMessage(err);
       console.log(err);
+    }
+  };
+
+  const updateMovies = () => {
+    const moviesData = JSON.parse(localStorage.getItem("all-movies"));
+    const savedMoviesData = JSON.parse(localStorage.getItem("all-saved"));
+    if (moviesData) {
+      const ownerMovies = moviesData.map((movie) => {
+        savedMoviesData.map(el => el.movieId).includes(movie.id) ?
+        movie.saved = true : movie.saved = false;
+        return movie
+      });
+      localStorage.setItem("all-movies", JSON.stringify(ownerMovies));
     }
   };
 
   const handleMovieSave = async (movie) => {
     try {
       const newMovie = await mainApi.addNewMovie(movie);
-      setAllMoviesSaved([...allMoviesSaved, newMovie]);
-      // setMoviesSaved([...allMoviesSaved, newMovie]);
+      const newSavedMovies = [newMovie, ...moviesSaved];
+      setMoviesSaved(newSavedMovies);
+      localStorage.setItem("all-saved", JSON.stringify(newSavedMovies));
+      updateMovies();
     } catch(err) {
+      setPopupOpened(true);
+      setMessage(err);
       console.log(err);
     }
   };
@@ -225,9 +176,13 @@ function App() {
   const handleMovieDelete = async (id) => {
     try {
       const deletedMovie = await mainApi.deleteMovie(id);
-      setAllMoviesSaved(allMoviesSaved.filter(el => el.movieId !== deletedMovie.movieId));
-      setMoviesSaved(moviesSaved.filter(el => el.movieId !== deletedMovie.movieId));
+      const newSavedMovies = moviesSaved.filter(el => el.movieId !== deletedMovie.movieId);
+      setMoviesSaved(newSavedMovies);
+      localStorage.setItem("all-saved", JSON.stringify(newSavedMovies));
+      updateMovies();
     } catch(err) {
+      setPopupOpened(true);
+      setMessage(err);
       console.log(err);
     }
   };
@@ -247,6 +202,91 @@ function App() {
   const handleChangeInputSaved = evt => {
     setSearchTermSaved(evt.target.value);
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const userInfoData = await mainApi.getUserInfo();
+        if (userInfoData){
+          setLoggedIn(true);
+        }else {
+          setLoggedIn(false);
+        }
+      } catch(err) {
+        setPopupOpened(true);
+        setMessage(err);
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const userInfoData = await mainApi.getUserInfo();
+        if (userInfoData){
+          setСurrentUser(userInfoData);
+        }
+      } catch(err) {
+        setPopupOpened(true);
+        setMessage(err);
+        console.log(err);
+      }
+    }
+    if (loggedIn) {
+      fetchData();
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      localStorage.setItem("request", searchTerm);
+    }
+    if (moviesSaved) {
+      localStorage.setItem("saved-movies", JSON.stringify(moviesSaved));
+    }
+    if (movies) {
+      localStorage.setItem("movies", JSON.stringify(movies));
+    }
+    localStorage.setItem("checkbox", JSON.stringify(isChecked));
+  }, [searchTerm, isChecked, moviesSaved, movies]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [savedMoviesData, moviesData] = await Promise.all([
+          mainApi.getSavedMovies(),
+          moviesApi.getMovies()
+        ]);
+        if (moviesData) {
+          const ownerMovies = moviesData.map((movie) => {
+            savedMoviesData.map(el => el.movieId).includes(movie.id) ?
+            movie.saved = true : movie.saved = false;
+            return movie
+          });
+          localStorage.setItem("all-movies", JSON.stringify(ownerMovies));
+        }
+        localStorage.setItem("all-saved", JSON.stringify(savedMoviesData.reverse()));
+        setMoviesSaved(savedMoviesData.reverse());
+      } catch(err) {
+        setPopupOpened(true);
+        setMessage(err);
+        console.log(err);
+      }
+    }
+    if (loggedIn) {
+      fetchData();
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    handleSubmitSearch();
+  }, [searchTerm, isChecked, navigate]);
+
+  useEffect(() => {
+    handleSubmitSearchSaved();
+  }, [searchTermSaved, isCheckedSaved, navigate]);
 
   return (
     <LoginContext.Provider value={ {loggedIn, handleLogout} }>
@@ -269,13 +309,15 @@ function App() {
                 handleChange={handleChangeCheckbox}
                 handleChangeInput={handleChangeInput}
                 setMovies={setMovies}
+                setErrorPopupOpened={setPopupOpened}
+                setErrorMessage={setMessage}
               />
             }/>
             <Route path="/saved-movies" element={
               <ProtectedRouteElement
                 element={SavedMovies}
                 movies={moviesSaved}
-                handleSubmitSearch={handleSubmitSearchSave}
+                handleSubmitSearch={handleSubmitSearchSaved}
                 searchTerm={searchTermSaved}
                 setSearchTerm={setSearchTermSaved}
                 isChecked={isCheckedSaved}
@@ -297,8 +339,9 @@ function App() {
             <Route path="*" element={<NoMatch />}/>
           </Routes>
           <ApiError
-            isOpen={errorPopupOpened}
+            isOpen={popupOpened}
             onClose={closeAllPopups}
+            message={message}
           />
         </div>
       </CurrentUserContext.Provider>

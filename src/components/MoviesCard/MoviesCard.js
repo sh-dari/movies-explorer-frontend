@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import './MoviesCard.css';
 import { movieApiLink } from '../../utils/constants';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function MoviesCard({ card, savedList, onCardSave, onCardDelete }) {
   const cardImage = card.image.url ? `${movieApiLink}/${card.image.url}` : card.image;
@@ -23,6 +22,7 @@ function MoviesCard({ card, savedList, onCardSave, onCardDelete }) {
 
   const handleDeleteClick = () => {
     onCardDelete(card._id);
+    card.saved = false;
   }
 
   const getTimeFromMinutes = (minutes) => {

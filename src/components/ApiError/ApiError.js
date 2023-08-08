@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './ApiError.css';
 
-function ApiError({ isOpen, onClose }) {
+function ApiError({ isOpen, onClose, message }) {
 
   const isOpened = isOpen ? "popup_opened" : "";
   useEffect(() => {
@@ -24,7 +24,7 @@ function ApiError({ isOpen, onClose }) {
   return(
     <div className={`popup ${isOpened}`} onMouseDown={handleOverlayClose}>
       <div className="popup__content">
-        <p className="popup__text">Нужно ввести ключевое слово</p>
+        <p className="popup__text">{message}</p>
         <button type="button" className="popup__close" onClick={onClose} />
       </div>
     </div>

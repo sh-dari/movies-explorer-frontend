@@ -6,7 +6,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoginContext } from '../../contexts/LoginContext';
 
 function Profile({ handleUpdateUser }) {
-  const { values, handleChange, errors, isValid, resetForm, setValues } = useFormValidation();
+  const { values, handleChange, errors, isValid, resetForm, setValues, setIsValid } = useFormValidation();
   const user = useContext(CurrentUserContext);
   const { handleLogout } = useContext(LoginContext);
   const [networkErrors, setNetworkErrors] = useState("");
@@ -19,6 +19,12 @@ function Profile({ handleUpdateUser }) {
     });
     setNetworkErrors("");
   }, [resetForm, setValues, user]);
+
+  useEffect(() => {
+    if (user.name === values.name && user.email === values.email) {
+      setIsValid(false);
+    }
+  }, [values]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

@@ -17,8 +17,11 @@ function Movies({
   handleMovieSave,
   handleChange,
   handleChangeInput,
-  setMovies
+  setMovies,
+  setErrorPopupOpened,
+  setErrorMessage
 }) {
+
   return(
     <>
       <Header />
@@ -31,6 +34,8 @@ function Movies({
           setSearchTerm={setSearchTerm}
           handleChange={handleChange}
           handleChangeInput={handleChangeInput}
+          setErrorPopupOpened={setErrorPopupOpened}
+          setErrorMessage={setErrorMessage}
         />
         <MoviesCardList
           movies={movies}
