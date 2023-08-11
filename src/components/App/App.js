@@ -30,7 +30,7 @@ function App() {
   const [popupOpened, setPopupOpened] = useState(false);
   const [message, setMessage] = useState("");
   const [notFoundMessage, setNotFoundMessage] = useState("");
-  const [searchTerm, setSearchTerm] = useState(localStorage.getItem("request"));
+  const [searchTerm, setSearchTerm] = useState(localStorage.getItem("request") || "");
   const [isChecked, setIsChecked] = useState(JSON.parse(localStorage.getItem("checkbox")));
   const [movies, setMovies] = useState(JSON.parse(localStorage.getItem("movies")));
 
@@ -45,7 +45,7 @@ function App() {
   const location = useLocation();
 
   const filterMovies = (moviesList, searchItem, isChecked) => {
-    if (!searchItem && location.pathname!=='/saved-movies') {
+    if (!searchItem && location.pathname === '/movies') {
       return
     }
     setIsLoading(true);
@@ -59,7 +59,6 @@ function App() {
       return (searchRU.includes(searchItem.toLowerCase()) || searchEN.includes(searchItem.toLowerCase())) && isShortMovie
     })
   };
-
 
   const handleSubmitSearch = () => {
     const filteredMovies = filterMovies(JSON.parse(localStorage.getItem("all-movies")), searchTerm, isChecked);
