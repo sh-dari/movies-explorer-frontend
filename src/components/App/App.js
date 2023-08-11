@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
@@ -14,6 +14,7 @@ import mainApi from "../../utils/MainApi";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoginContext } from '../../contexts/LoginContext';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRouteLoginElement from '../ProtectedRouteLogin/ProtectedRouteLogin';
 import {
   NOT_FOUND_MESSAGE,
   ERROR_TOKEN_MESSAGE,
@@ -35,7 +36,7 @@ function App() {
 
   const [searchTermSaved, setSearchTermSaved] = useState("");
   const [isCheckedSaved, setIsCheckedSaved] = useState(false);
-  const [moviesSaved, setMoviesSaved] = useState([]);
+  const [moviesSaved, setMoviesSaved] = useState(JSON.parse(localStorage.getItem("all-saved")));
 
   const [currentUser, setСurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
@@ -44,8 +45,8 @@ function App() {
   const location = useLocation();
 
   const filterMovies = (moviesList, searchItem, isChecked) => {
-    if (!searchItem && location.pathname==="/movies") {
-      return moviesList
+    if (!searchItem) {
+      return
     }
     setIsLoading(true);
     setTimeout(() => {
@@ -55,7 +56,7 @@ function App() {
       const searchRU = movie.nameRU.toLowerCase();
       const searchEN = movie.nameEN.toLowerCase();
       const isShortMovie = isChecked ? movie.duration < 40 : true;
-      return (searchRU.includes(searchItem) || searchEN.includes(searchItem)) && isShortMovie
+      return (searchRU.includes(searchItem.toLowerCase()) || searchEN.includes(searchItem.toLowerCase())) && isShortMovie
     })
   };
 
@@ -81,6 +82,8 @@ function App() {
       await mainApi.logout();
       setLoggedIn(false);
       navigate('/', {replace: true});
+      setSearchTerm("");
+      setIsChecked(false);
       localStorage.clear();
     } catch(err) {
       setPopupOpened(true);
@@ -94,7 +97,7 @@ function App() {
       const data = await mainApi.authorize(values.password, values.email);
       if (data.token){
         setLoggedIn(true);
-        navigate('/movies');
+        navigate('/movies', {replace: true});
       }else {
         throw new Error(ERROR_TOKEN_MESSAGE);
       }
@@ -209,12 +212,11 @@ function App() {
         const userInfoData = await mainApi.getUserInfo();
         if (userInfoData){
           setLoggedIn(true);
+          navigate(location.pathname, {replace: true});
         }else {
           setLoggedIn(false);
         }
       } catch(err) {
-        setPopupOpened(true);
-        setMessage(err);
         console.log(err);
       }
     }
@@ -229,8 +231,6 @@ function App() {
           setСurrentUser(userInfoData);
         }
       } catch(err) {
-        setPopupOpened(true);
-        setMessage(err);
         console.log(err);
       }
     }
@@ -243,18 +243,16 @@ function App() {
     if (searchTerm) {
       localStorage.setItem("request", searchTerm);
     }
-    if (moviesSaved) {
-      localStorage.setItem("saved-movies", JSON.stringify(moviesSaved));
-    }
     if (movies) {
       localStorage.setItem("movies", JSON.stringify(movies));
     }
     localStorage.setItem("checkbox", JSON.stringify(isChecked));
-  }, [searchTerm, isChecked, moviesSaved, movies]);
+  }, [searchTerm, isChecked, movies]);
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setIsLoading(true);
         const [savedMoviesData, moviesData] = await Promise.all([
           mainApi.getSavedMovies(),
           moviesApi.getMovies()
@@ -266,12 +264,10 @@ function App() {
             return movie
           });
           localStorage.setItem("all-movies", JSON.stringify(ownerMovies));
+          setIsLoading(false);
         }
         localStorage.setItem("all-saved", JSON.stringify(savedMoviesData.reverse()));
-        setMoviesSaved(savedMoviesData.reverse());
       } catch(err) {
-        setPopupOpened(true);
-        setMessage(err);
         console.log(err);
       }
     }
@@ -282,11 +278,17 @@ function App() {
 
   useEffect(() => {
     handleSubmitSearch();
-  }, [searchTerm, isChecked, navigate]);
+  }, [isChecked, navigate]);
 
   useEffect(() => {
     handleSubmitSearchSaved();
-  }, [searchTermSaved, isCheckedSaved, navigate]);
+  }, [isCheckedSaved]);
+
+  useEffect(() => {
+    setSearchTermSaved("");
+    setIsCheckedSaved(false);
+    setMoviesSaved(JSON.parse(localStorage.getItem("all-saved")));
+  }, [navigate]);
 
   return (
     <LoginContext.Provider value={ {loggedIn, handleLogout} }>
@@ -306,6 +308,7 @@ function App() {
                 isChecked={isChecked}
                 setIsChecked={setIsChecked}
                 handleMovieSave={handleMovieSave}
+                handleMovieDelete={handleMovieDelete}
                 handleChange={handleChangeCheckbox}
                 handleChangeInput={handleChangeInput}
                 setMovies={setMovies}
@@ -334,8 +337,18 @@ function App() {
                 handleUpdateUser={handleUpdateUser}
               />
             }/>
-            <Route path="/signup" element={<Register handleRegister={handleRegister} />} />
-            <Route path="/signin" element={<Login handleAuthorize={handleAuthorize} />} />
+            <Route path="/signup" element={
+              <ProtectedRouteLoginElement
+                element={Register}
+                handleRegister={handleRegister}
+              />
+            }/>
+            <Route path="/signin" element={
+              <ProtectedRouteLoginElement
+                element={Login}
+                handleAuthorize={handleAuthorize}
+              />
+            }/>
             <Route path="*" element={<NoMatch />}/>
           </Routes>
           <ApiError

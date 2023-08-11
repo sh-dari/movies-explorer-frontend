@@ -28,6 +28,7 @@ function Profile({ handleUpdateUser }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    setIsValid(false);
     handleUpdateUser({
       name: values.name.trimStart(),
       email: values.email

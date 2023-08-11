@@ -4,7 +4,7 @@ import { useFormValidation } from '../../hooks/useFormValidation';
 import AuthForm from '../AuthForm/AuthForm';
 
 function Login({ handleAuthorize }) {
-  const {values, handleChange, errors, isValid, resetForm} = useFormValidation();
+  const { values, handleChange, errors, isValid, resetForm, setIsValid } = useFormValidation();
   const [networkErrors, setNetworkErrors] = useState("");
 
   useEffect(() => {
@@ -13,6 +13,7 @@ function Login({ handleAuthorize }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsValid(false);
     handleAuthorize({
       password: values.password,
       email: values.email

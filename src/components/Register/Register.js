@@ -1,10 +1,10 @@
 import { React, useEffect, useState } from 'react';
 import './Register.css';
-import { useFormValidation } from '../../hooks/useFormValidation';
 import AuthForm from '../AuthForm/AuthForm';
+import { useFormValidation } from '../../hooks/useFormValidation';
 
 function Register({ handleRegister }) {
-  const {values, handleChange, errors, isValid, resetForm} = useFormValidation();
+  const { values, handleChange, errors, isValid, resetForm, setIsValid } = useFormValidation();
   const [networkErrors, setNetworkErrors] = useState("");
 
   useEffect(() => {
@@ -13,6 +13,7 @@ function Register({ handleRegister }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsValid(false);
     handleRegister({
       name: values.name.trimStart(),
       password: values.password,

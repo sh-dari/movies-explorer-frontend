@@ -19,7 +19,8 @@ function Movies({
   handleChangeInput,
   setMovies,
   setErrorPopupOpened,
-  setErrorMessage
+  setErrorMessage,
+  handleMovieDelete
 }) {
 
   return(
@@ -43,6 +44,7 @@ function Movies({
           notFoundMessage={notFoundMessage}
           handleMovieSave={handleMovieSave}
           setMovies={setMovies}
+          handleMovieDelete={handleMovieDelete}
         />
       </main>
       <Footer />

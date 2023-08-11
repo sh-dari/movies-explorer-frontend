@@ -3,6 +3,13 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useResize } from '../../hooks/useResize';
 import Preloader from '../Preloader/Preloader';
+import {
+  COUNT_SCREEN_LG,
+  COUNT_SCREEN_MD,
+  COUNT_SCREEN_SM,
+  COLUMNS_SCREEN_LG,
+  COLUMNS_SCREEN_MD
+} from '../../utils/constants';
 
 function MoviesCardList({
   savedList,
@@ -21,20 +28,20 @@ function MoviesCardList({
       setCardItems(movies && movies.length);
     } else {
       if (isScreenMd) {
-        setCardItems(12);
+        setCardItems(COUNT_SCREEN_LG);
       } else if (isScreenSm) {
-        setCardItems(8);
+        setCardItems(COUNT_SCREEN_MD);
       } else {
-        setCardItems(5);
+        setCardItems(COUNT_SCREEN_SM);
       }
     }
   }, [movies]);
 
   useEffect(() => {
     if (isScreenMd) {
-      setCardItems(Math.ceil(cardItems / 3) * 3);
+      setCardItems(Math.ceil(cardItems / COLUMNS_SCREEN_LG) * COLUMNS_SCREEN_LG);
     } else if (isScreenSm) {
-      setCardItems(Math.ceil(cardItems / 2) * 2);
+      setCardItems(Math.ceil(cardItems / COLUMNS_SCREEN_MD) * COLUMNS_SCREEN_MD);
     }
   }, [isScreenSm, isScreenMd]);
 
@@ -47,9 +54,9 @@ function MoviesCardList({
 
   const showMore = () => {
     if (isScreenMd) {
-      setCardItems(cardItems + 3);
+      setCardItems(cardItems + COLUMNS_SCREEN_LG);
     } else {
-      setCardItems(cardItems + 2);
+      setCardItems(cardItems + COLUMNS_SCREEN_MD);
     }
   };
 

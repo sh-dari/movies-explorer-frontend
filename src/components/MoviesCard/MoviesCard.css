@@ -51,6 +51,14 @@
   height: 21px;
   object-fit: contain;
   object-position: center;
+  border: none;
+  background-color: transparent;
+  transition: opacity .3s ease;
+}
+
+.movies-list__saved:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .movies-list__delete {
