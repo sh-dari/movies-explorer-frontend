@@ -45,7 +45,7 @@ function App() {
   const location = useLocation();
 
   const filterMovies = (moviesList, searchItem, isChecked) => {
-    if (!searchItem) {
+    if (!searchItem && location.pathname==='/movies') {
       return
     }
     setIsLoading(true);
