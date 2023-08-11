@@ -45,8 +45,12 @@ function App() {
   const location = useLocation();
 
   const filterMovies = (moviesList, searchItem, isChecked) => {
-    if (!searchItem && location.pathname==='/movies') {
-      return
+    if (!searchItem) {
+      if (location.pathname==='/movies') {
+        return
+      }else {
+        setSearchTermSaved("");
+      }
     }
     setIsLoading(true);
     setTimeout(() => {
