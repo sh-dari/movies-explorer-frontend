@@ -45,12 +45,8 @@ function App() {
   const location = useLocation();
 
   const filterMovies = (moviesList, searchItem, isChecked) => {
-    if (!searchItem) {
-      if (location.pathname==='/movies') {
-        return
-      }else {
-        setSearchTermSaved("");
-      }
+    if (!searchItem && location.pathname==='/movies') {
+      return
     }
     setIsLoading(true);
     setTimeout(() => {
@@ -64,6 +60,7 @@ function App() {
     })
   };
 
+
   const handleSubmitSearch = () => {
     const filteredMovies = filterMovies(JSON.parse(localStorage.getItem("all-movies")), searchTerm, isChecked);
     if (filteredMovies && filteredMovies.length === 0 && localStorage.getItem("request")) {
@@ -73,7 +70,7 @@ function App() {
   };
 
   const handleSubmitSearchSaved = () => {
-    const filteredMovies = filterMovies(JSON.parse(localStorage.getItem("all-saved")), searchTermSaved, isCheckedSaved);
+    const filteredMovies = filterMovies(JSON.parse(localStorage.getItem("all-saved")), searchTermSaved || "", isCheckedSaved);
     setMoviesSaved(filteredMovies);
   };
 
