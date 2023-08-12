@@ -1,6 +1,6 @@
 import React from 'react';
 import './MoviesCard.css';
-import { movieApiLink, getTimeFromMinutes } from '../../utils/constants';
+import { movieApiLink, HOUR_DURATION } from '../../utils/constants';
 
 function MoviesCard({ card, savedList, onCardSave, onCardDelete }) {
   const cardImage = card.image.url ? `${movieApiLink}/${card.image.url}` : card.image;
@@ -29,6 +29,10 @@ function MoviesCard({ card, savedList, onCardSave, onCardDelete }) {
     onCardDelete(deleteMovie._id);
     card.saved = false;
   }
+
+  const getTimeFromMinutes = (minutes) => {
+    return `${Math.trunc(minutes/HOUR_DURATION)}ч ${minutes % HOUR_DURATION}м`;
+  };
 
   return(
     <li className="movies-list__item">
