@@ -5,10 +5,9 @@
 }
 
 .search-form__input {
-  width: 100%;
+  width: 80%;
   text-align: center;
   border: none;
-  border-bottom: 1px solid #e8e8e8;
   padding: 0 0 15px;
   font-size: 28px;
   font-style: normal;
@@ -22,43 +21,47 @@
   color: #a0a0a0;
 }
 
-.search-form__input:focus {
+.search-form__wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.search-form__wrapper:focus-within {
   border-bottom: 1px solid #ff4062;
 }
 
-.search-form__wrapper {
-  position: relative;
-}
-
-.search-form__wrapper::before {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 0;
+.search-form__button {
   background-image: url(../../images/search.svg);
   width: 34px;
   height: 34px;
-  transition: opacity .3s ease-out;
-}
-
-.search-form__wrapper:hover::before {
-  opacity: .8;
-  cursor: pointer;
-}
-
-.search-form__wrapper::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-image: url(../../images/find.svg);
-  width: 80px;
-  height: 34px;
+  border: none;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 50%;
   transition: opacity .3s ease-out;
   background-repeat: no-repeat;
 }
 
-.search-form__wrapper:hover::after {
+.search-form__button-submit {
+  background-image: url(../../images/find.svg);
+  width: 80px;
+  height: 34px;
+  border: none;
+  object-fit: contain;
+  object-position: center;
+  transition: opacity .3s ease-out;
+  background-repeat: no-repeat;
+  background-color: inherit;
+}
+
+.search-form__button:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+.search-form__button-submit:hover {
   opacity: .8;
   cursor: pointer;
 }
@@ -66,17 +69,17 @@
 @media screen and (max-width: 1170px) {
   .search-form {
     max-width: 708px;
-    padding-top: 98px;
+    padding: 98px 20px 0;
   }
 }
 
 @media screen and (max-width: 500px) {
   .search-form {
     max-width: 292px;
-    padding-top: 111px;
+    padding: 111px 0 0;
   }
 
-  .search-form__wrapper::before {
+  .search-form__button {
     display: none;
   }
 
@@ -85,7 +88,8 @@
     font-size: 18px;
   }
 
-  .search-form__wrapper::after {
+  .search-form__button-submit {
+    position: absolute;
     right: 0;
     top: -7px;
   }

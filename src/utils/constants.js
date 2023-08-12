@@ -1,65 +1,22 @@
-export const movies = [
-  {
-    title: "33 слова о дизайне",
-    image: "https://cdnn21.img.ria.ru/images/156302/75/1563027536_0:0:817:460_600x0_80_0_0_e4c3e477a7530ba67c91944349601ffe.jpg",
-    time: "1ч 17м"
-  },
-  {
-    title: "Киноальманах «100 лет дизайна»",
-    image: "https://mcdn.tvzvezda.ru/storage/news_other_images/2020/08/20/d11845194d494045b7ad14c74e6e96e0.jpg",
-    time: "1ч 17м",
-    saved: true
-  },
-  {
-    title: "В погоне за Бенкси",
-    image: "https://www.tvoybro.com/uploads/affiche/event/image/580bdeb4ebf5c92c0e00009d/87d20bc8-a37a-4a9d-b659-e172c55cb14d.jpg",
-    time: "1ч 17м"
-  },
-  {
-    title: "33 слова о дизайне",
-    image: "https://cdnn21.img.ria.ru/images/156302/75/1563027536_0:0:817:460_600x0_80_0_0_e4c3e477a7530ba67c91944349601ffe.jpg",
-    time: "1ч 17м",
-    saved: true
-  },
-  {
-    title: "Киноальманах «100 лет дизайна»",
-    image: "https://mcdn.tvzvezda.ru/storage/news_other_images/2020/08/20/d11845194d494045b7ad14c74e6e96e0.jpg",
-    time: "1ч 17м"
-  },
-  {
-    title: "В погоне за Бенкси",
-    image: "https://www.tvoybro.com/uploads/affiche/event/image/580bdeb4ebf5c92c0e00009d/87d20bc8-a37a-4a9d-b659-e172c55cb14d.jpg",
-    time: "1ч 17м",
-    saved: true
-  },
-  {
-    title: "33 слова о дизайне",
-    image: "https://cdnn21.img.ria.ru/images/156302/75/1563027536_0:0:817:460_600x0_80_0_0_e4c3e477a7530ba67c91944349601ffe.jpg",
-    time: "1ч 17м"
-  },
-  {
-    title: "Киноальманах «100 лет дизайна»",
-    image: "https://mcdn.tvzvezda.ru/storage/news_other_images/2020/08/20/d11845194d494045b7ad14c74e6e96e0.jpg",
-    time: "1ч 17м"
-  },
-  {
-    title: "В погоне за Бенкси",
-    image: "https://www.tvoybro.com/uploads/affiche/event/image/580bdeb4ebf5c92c0e00009d/87d20bc8-a37a-4a9d-b659-e172c55cb14d.jpg",
-    time: "1ч 17м"
-  },
-  {
-    title: "33 слова о дизайне",
-    image: "https://cdnn21.img.ria.ru/images/156302/75/1563027536_0:0:817:460_600x0_80_0_0_e4c3e477a7530ba67c91944349601ffe.jpg",
-    time: "1ч 17м"
-  },
-  {
-    title: "Киноальманах «100 лет дизайна»",
-    image: "https://mcdn.tvzvezda.ru/storage/news_other_images/2020/08/20/d11845194d494045b7ad14c74e6e96e0.jpg",
-    time: "1ч 17м"
-  },
-  {
-    title: "В погоне за Бенкси",
-    image: "https://www.tvoybro.com/uploads/affiche/event/image/580bdeb4ebf5c92c0e00009d/87d20bc8-a37a-4a9d-b659-e172c55cb14d.jpg",
-    time: "1ч 17м"
-  }
-]
+export const movieApiLink = "https://api.nomoreparties.co";
+export const mainApiLink = "https://api.movies.shdari.nomoredomains.xyz";
+
+export const SCREEN_SM = 730;
+export const SCREEN_MD = 1170;
+
+export const COUNT_SCREEN_LG = 12;
+export const COUNT_SCREEN_MD = 8;
+export const COUNT_SCREEN_SM = 5;
+
+export const COLUMNS_SCREEN_LG = 3;
+export const COLUMNS_SCREEN_MD = 2;
+
+export const HOUR_DURATION = 60;
+
+export const NOT_FOUND_MESSAGE = "Ничего не найдено";
+export const ERROR_TOKEN_MESSAGE = "При авторизации произошла ошибка. Токен не передан или передан не в том формате.";
+export const ERROR_LOGIN_MESSAGE = "Вы ввели неправильный логин или пароль.";
+export const ERROR_AUTH_MESSAGE = "При авторизации произошла ошибка. Переданный токен некорректен.";
+export const ERROR_EMAIL_MESSAGE = "Пользователь с таким email уже существует.";
+export const ERROR_PROFILE_MESSAGE = "При обновлении профиля произошла ошибка.";
+export const SUCCESS_PROFILE_MESSAGE = "Профиль успешно обновлён.";

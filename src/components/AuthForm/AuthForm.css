@@ -36,6 +36,11 @@
   cursor: pointer;
 }
 
+.register__button:disabled {
+  opacity: .8;
+  cursor: default;
+}
+
 .register__logo {
   background-image: url(../../images/logo.svg);
   background-size: contain;
@@ -141,6 +146,15 @@
   width: 100%;
 }
 
+.register__item-errors {
+  display: flex;
+  justify-content: center;
+  color: #ff4062;
+  font-size: 11px;
+  font-weight: 400;
+  min-height: 23px;
+}
+
 @media screen and (max-width: 500px) {
   .register__container {
     width: 100%;
@@ -169,5 +183,9 @@
 
   .login__container {
     row-gap: 288px;
+  }
+
+  .register__item::placeholder {
+    font-size: 12px;
   }
 }

@@ -2,17 +2,13 @@ import { React } from 'react';
 import './AuthForm.css';
 import { Link, useLocation } from 'react-router-dom';
 
-function AuthForm({ children, isValid, login }) {
+function AuthForm({ children, isValid, login, handleSubmit, networkErrors }) {
   const location = useLocation();
   const text = location.pathname ==="/signup" ?
     {welcome: "Добро пожаловать!", button: "Зарегестрироваться", answer: "Уже зарегистрированы?",
     path: "/signin", action: "Войти"} :
     {welcome: "Рады видеть!", button: "Войти", answer: "Ещё не зарегистрированы?",
     path: "/signup", action: "Регистрация"};
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-  }
 
   return(
     <>
@@ -25,7 +21,10 @@ function AuthForm({ children, isValid, login }) {
           <fieldset className="register__input-container">
             {children}
           </fieldset>
-          <button type="submit" className="register__button" disabled={!isValid}>{text.button}</button>
+          <div>
+            <span className={`register__item-errors`}>{networkErrors}</span>
+            <button type="submit" className="register__button" disabled={!isValid}>{text.button}</button>
+          </div>
         </form>
       </section>
       <div className="register__signin">
