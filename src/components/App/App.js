@@ -165,7 +165,7 @@ function App() {
   const handleMovieSave = async (movie) => {
     try {
       const newMovie = await mainApi.addNewMovie(movie);
-      const newSavedMovies = [newMovie, ...moviesSaved];
+      const newSavedMovies = [newMovie, ...moviesSaved || []];
       setMoviesSaved(newSavedMovies);
       localStorage.setItem("all-saved", JSON.stringify(newSavedMovies));
       updateMovies();
@@ -179,7 +179,7 @@ function App() {
   const handleMovieDelete = async (id) => {
     try {
       const deletedMovie = await mainApi.deleteMovie(id);
-      const newSavedMovies = moviesSaved.filter(el => el.movieId !== deletedMovie.movieId);
+      const newSavedMovies = moviesSaved ? moviesSaved.filter(el => el.movieId !== deletedMovie.movieId) : [];
       setMoviesSaved(newSavedMovies);
       localStorage.setItem("all-saved", JSON.stringify(newSavedMovies));
       updateMovies();
