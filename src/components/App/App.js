@@ -278,11 +278,11 @@ function App() {
 
   useEffect(() => {
     handleSubmitSearch();
-  }, [isChecked, navigate]);
+  }, [isChecked, searchTerm, navigate]);
 
   useEffect(() => {
     handleSubmitSearchSaved();
-  }, [isCheckedSaved]);
+  }, [isCheckedSaved,searchTerm]);
 
   useEffect(() => {
     setSearchTermSaved("");
